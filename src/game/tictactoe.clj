@@ -5,7 +5,6 @@
 
 (defn- player1 []
   (server/broadcast "É a vez do jogador 1")
-
   (let [p1 (first @server/players)
         move (.readLine (p1 :reader))]
     (server/broadcast (str "Jogador 1: " move))
@@ -13,7 +12,6 @@
 
 (defn- player2 []
   (server/broadcast "É a vez do jogador 2")
-
   (let [p2 (second @server/players)
         move (.readLine (p2 :reader))]
     (server/broadcast (str "Jogador 2: " move))
@@ -78,7 +76,6 @@
      (keyword? (and p0 p1 p2 p3 p4 p5 p6 p7 p8))
        draw)))
 
-;; FIXME: aqui não seria o caso de DRY com if-let?
 (defn- process [move who]
   (if (re-matches #"^[012345678]$" move)
     (let [cell (Integer/parseInt move)]
